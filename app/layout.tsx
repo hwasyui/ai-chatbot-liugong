@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Acme Assistant",
+  title: "Acme Assistant - Context Injection",
   description: "Ask questions about Acme Tech Solutions company policies and IT support.",
 };
 
