@@ -6,6 +6,7 @@ type FaqFile = { company_name: string; knowledge_base: Category[] };
 
 const faq: FaqFile = faqData;
 
+// flattens the whole faq into one block of text for the ai prompt
 export function getKnowledgeText(): string {
   const sections = faq.knowledge_base.map((cat) => {
     const lines = cat.qa_pairs.map((pair) => `Q: ${pair.question}\nA: ${pair.answer}`);
@@ -15,6 +16,7 @@ export function getKnowledgeText(): string {
   return `company: ${faq.company_name}\n\n${sections.join("\n\n")}`;
 }
 
+// picks a handful of sample questions to show as quick-start buttons
 export function getSuggestedQuestions(count = 4): string[] {
   const ordered: string[] = [];
   const longestCategory = Math.max(0, ...faq.knowledge_base.map((cat) => cat.qa_pairs.length));

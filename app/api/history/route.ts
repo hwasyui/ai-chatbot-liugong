@@ -3,6 +3,7 @@ import { errorResponse } from "@/lib/http";
 import { isValidSessionId } from "@/lib/validation";
 import type { HistoryResponse } from "@/lib/types";
 
+// returns the saved chat history for one session
 export async function GET(request: Request) {
   const sessionId = new URL(request.url).searchParams.get("sessionId");
 

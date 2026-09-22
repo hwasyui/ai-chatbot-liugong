@@ -1,5 +1,6 @@
 import { getKnowledgeText } from "@/lib/knowledge";
 
+// builds the instructions + knowledge base that get sent to gemini on every request
 export function buildSystemPrompt(): string {
   const knowledge = getKnowledgeText();
 

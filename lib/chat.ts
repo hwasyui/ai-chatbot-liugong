@@ -2,6 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { buildSystemPrompt } from "@/lib/prompt";
 import type { ChatMessage } from "@/lib/types";
 
+// sends the conversation to gemini and returns its reply as plain text
 export async function generateReply(history: ChatMessage[], userMessage: string): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("GEMINI_API_KEY is not set");

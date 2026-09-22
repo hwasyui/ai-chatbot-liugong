@@ -18,6 +18,7 @@ function getClient(): SupabaseClient {
   return client;
 }
 
+// loads every saved message for a session, oldest first
 export async function getMessages(sessionId: string): Promise<ChatMessage[]> {
   const { data, error } = await getClient()
     .from(TABLE)
@@ -35,6 +36,7 @@ export async function getMessages(sessionId: string): Promise<ChatMessage[]> {
   }));
 }
 
+// appends new messages to a session's saved history
 export async function saveMessages(sessionId: string, newMessages: ChatMessage[]): Promise<void> {
   const rows: MessageRow[] = newMessages.map((message) => ({
     id: message.id,

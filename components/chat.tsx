@@ -46,6 +46,7 @@ export default function Chat({ suggestedQuestions = [] }: ChatProps) {
     list.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
   }, [messages, isSending, error]);
 
+  // asks the backend for a reply to the given text and updates state with the result
   async function requestReply(text: string) {
     setIsSending(true);
     setError(null);
@@ -62,6 +63,7 @@ export default function Chat({ suggestedQuestions = [] }: ChatProps) {
     }
   }
 
+  // shows the user's message right away, then kicks off requestReply for the ai's answer
   function handleSend(text: string) {
     const cleanText = text.trim();
     if (!cleanText || isSending) return;
@@ -70,6 +72,7 @@ export default function Chat({ suggestedQuestions = [] }: ChatProps) {
     requestReply(cleanText);
   }
 
+  // starts a fresh conversation, old messages stay in the database. which not shown
   function handleNewChat() {
     sessionIdRef.current = createNewSessionId();
     setMessages([]);

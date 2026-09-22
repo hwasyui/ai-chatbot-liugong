@@ -2,6 +2,7 @@ import { isValidSessionId } from "@/lib/validation";
 
 const STORAGE_KEY = "acme-chat-session-id";
 
+// gets the saved session id, or makes a new one if there isn't one
 export function getSessionId(): string {
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -11,6 +12,7 @@ export function getSessionId(): string {
   return createNewSessionId();
 }
 
+// creates and saves a fresh session id
 export function createNewSessionId(): string {
   const id = crypto.randomUUID();
   try {

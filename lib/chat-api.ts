@@ -12,6 +12,7 @@ async function readErrorMessage(response: Response): Promise<string> {
   }
 }
 
+// posts a message to the backend and returns the assistant's reply
 export async function sendMessage(sessionId: string, message: string): Promise<ChatMessage> {
   let response: Response;
 
@@ -39,6 +40,7 @@ export async function sendMessage(sessionId: string, message: string): Promise<C
   return data.reply;
 }
 
+// fetches a session's saved chat history from the backend
 export async function loadHistory(sessionId: string): Promise<ChatMessage[]> {
   try {
     const response = await fetch(`/api/history?sessionId=${encodeURIComponent(sessionId)}`);
