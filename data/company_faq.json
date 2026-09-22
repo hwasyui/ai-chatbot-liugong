@@ -1,0 +1,67 @@
+{
+  "company_name": "Acme Tech Solutions",
+  "version": "1.0",
+  "last_updated": "2026-01-15",
+  "knowledge_base": [
+    {
+      "category": "Work Hours & Attendance",
+      "qa_pairs": [
+        {
+          "question": "What are the standard working hours?",
+          "answer": "Our regular working hours are Monday to Friday, 09:00 AM to 06:00 PM (WIB), including a 1-hour lunch break from 12:00 PM to 01:00 PM."
+        },
+        {
+          "question": "Does the company support remote or hybrid work?",
+          "answer": "Yes, we operate on a hybrid work model. Employees are required to work from the office on Mondays and Wednesdays, while working remotely on Tuesdays, Thursdays, and Fridays."
+        },
+        {
+          "question": "What is the policy for overtime work?",
+          "answer": "Overtime work must be pre-approved by your Direct Supervisor via the HR Portal at least 24 hours in advance. Overtime compensation is calculated at 1.5x the hourly base salary rate."
+        }
+      ]
+    },
+    {
+      "category": "Leave & Time Off",
+      "qa_pairs": [
+        {
+          "question": "How many annual leave days do employees get?",
+          "answer": "Full-time employees receive 12 days of paid annual leave per calendar year, accrued after completing the initial 3-month probation period."
+        },
+        {
+          "question": "How do I request paid time off or sick leave?",
+          "answer": "Leave requests must be submitted through the HR Portal at least 3 days prior. For sick leave exceeding 1 consecutive day, a valid medical certificate (surat dokter) must be uploaded."
+        },
+        {
+          "question": "Do unused annual leave days carry over to the next year?",
+          "answer": "A maximum of 5 unused annual leave days can be carried over to the first quarter (Q1) of the following year. Any remaining days beyond that will expire on March 31."
+        }
+      ]
+    },
+    {
+      "category": "Medical & Health Benefits",
+      "qa_pairs": [
+        {
+          "question": "What medical benefits are provided?",
+          "answer": "All permanent employees receive BPJS Kesehatan coverage and private outpatient medical reimbursement up to IDR 5,000,000 per calendar year."
+        },
+        {
+          "question": "How do I claim medical reimbursement?",
+          "answer": "Submit your original receipts and diagnosis slip via the HR Portal under the 'Reimbursements' menu within 14 days of your hospital or clinic visit."
+        }
+      ]
+    },
+    {
+      "category": "Equipment & IT Support",
+      "qa_pairs": [
+        {
+          "question": "What is the laptop allowance or provision policy?",
+          "answer": "Each engineer/developer is issued a MacBook Pro or High-Spec ThinkPad upon joining. Employees can request a laptop replacement or upgrade every 3 years."
+        },
+        {
+          "question": "How do I report technical issues or request hardware accessories?",
+          "answer": "Submit an IT Support Ticket via Slack by sending a direct message to @IT-Helpdesk or emailing helpdesk@acmetech.com."
+        }
+      ]
+    }
+  ]
+}
