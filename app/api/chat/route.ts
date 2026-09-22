@@ -1,4 +1,4 @@
-import { generateReply } from "@/lib/gemini";
+import { generateReply } from "@/lib/chat";
 import { getMessages, saveMessages } from "@/lib/history-store";
 import { errorResponse } from "@/lib/http";
 import { createMessage } from "@/lib/message";
@@ -26,22 +26,15 @@ export async function POST(request: Request) {
 
   const text = message.trim();
   if (text.length > MAX_MESSAGE_LENGTH) {
-    return errorResponse(
-      `Your message is too long. Please keep it under ${MAX_MESSAGE_LENGTH} characters.`,
-      400
-    );
+    return errorResponse(`Your message is too long. Please keep it under ${MAX_MESSAGE_LENGTH} characters.`, 400);
   }
 
   try {
     const history = await getMessages(sessionId);
+
     const replyText = await generateReply(history.slice(-HISTORY_LIMIT), text);
 
-    if (!replyText) {
-      return errorResponse(
-        "The assistant couldn't come up with an answer. Please try again.",
-        502
-      );
-    }
+    if (!replyText) return errorResponse("The assistant couldn't come up with an answer. Please try again.", 502);
 
     const userMessage = createMessage("user", text);
     const reply = createMessage("assistant", replyText);
@@ -59,10 +52,7 @@ export async function POST(request: Request) {
 
     const status = (error as { status?: number }).status;
     if (status === 429 || status === 503) {
-      return errorResponse(
-        "The assistant is very busy right now. Please wait a moment and try again.",
-        503
-      );
+      return errorResponse("The assistant is very busy right now. Please wait a moment and try again.", 503);
     }
 
     return errorResponse("Something went wrong on our side. Please try again.", 500);

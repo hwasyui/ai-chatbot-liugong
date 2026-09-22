@@ -1,12 +1,6 @@
-import type {
-  ChatMessage,
-  ChatResponse,
-  ErrorResponse,
-  HistoryResponse,
-} from "@/lib/types";
+import type { ChatMessage, ChatResponse, ErrorResponse, HistoryResponse } from "@/lib/types";
 
-const NETWORK_ERROR =
-  "We couldn't reach the server. Please check your internet connection and try again.";
+const NETWORK_ERROR = "We couldn't reach the server. Please check your internet connection and try again.";
 const GENERIC_ERROR = "Something went wrong. Please try again.";
 
 async function readErrorMessage(response: Response): Promise<string> {
@@ -18,10 +12,7 @@ async function readErrorMessage(response: Response): Promise<string> {
   }
 }
 
-export async function sendMessage(
-  sessionId: string,
-  message: string
-): Promise<ChatMessage> {
+export async function sendMessage(sessionId: string, message: string): Promise<ChatMessage> {
   let response: Response;
 
   try {
@@ -34,9 +25,7 @@ export async function sendMessage(
     throw new Error(NETWORK_ERROR);
   }
 
-  if (!response.ok) {
-    throw new Error(await readErrorMessage(response));
-  }
+  if (!response.ok) throw new Error(await readErrorMessage(response));
 
   let data: Partial<ChatResponse>;
   try {
@@ -45,18 +34,14 @@ export async function sendMessage(
     throw new Error(GENERIC_ERROR);
   }
 
-  if (!data.reply || !data.reply.content) {
-    throw new Error("We got an empty answer. Please try again.");
-  }
+  if (!data.reply || !data.reply.content) throw new Error("We got an empty answer. Please try again.");
 
   return data.reply;
 }
 
 export async function loadHistory(sessionId: string): Promise<ChatMessage[]> {
   try {
-    const response = await fetch(
-      `/api/history?sessionId=${encodeURIComponent(sessionId)}`
-    );
+    const response = await fetch(`/api/history?sessionId=${encodeURIComponent(sessionId)}`);
     if (!response.ok) return [];
 
     const data = (await response.json()) as Partial<HistoryResponse>;
