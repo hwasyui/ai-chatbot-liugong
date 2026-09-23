@@ -1,6 +1,6 @@
 # Acme Assistant
 
-Technical Test Assignment: IT Specialist Position. It is a chatbot that answers questions from a company FAQ, constrained to not answer outside of the knowledge base.
+Technical Test Assignment: IT Specialist Position. A chatbot that answers questions from a company FAQ, and only from that FAQ. Chatbot will not answer questions outside of the knowledge base or guess something it doesn't know.
 
 **Live demo:** https://ai-chatbot-liugong-context.vercel.app/
 
@@ -12,9 +12,7 @@ However, since this is a technical test, I also built a RAG version to show the 
 
 ## Tech stack
 
-- Next.js 16 (App Router) and React, both frontend and backend in one project
-- TypeScript
-- Tailwind CSS
+- Next.js 16 (React, TypeScript, Tailwind CSS), frontend and backend in one project
 - Groq for the AI replies
 - Supabase (Postgres) for chat history
 
