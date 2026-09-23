@@ -1,0 +1,22 @@
+import faqData from "@/data/company_faq.json";
+
+type QAPair = { question: string; answer: string };
+type Category = { category: string; qa_pairs: QAPair[] };
+type FaqFile = { company_name: string; knowledge_base: Category[] };
+
+const faq: FaqFile = faqData;
+
+// picks a handful of sample questions to show as quick-start buttons
+export function getSuggestedQuestions(count = 4): string[] {
+  const ordered: string[] = [];
+  const longestCategory = Math.max(0, ...faq.knowledge_base.map((cat) => cat.qa_pairs.length));
+
+  for (let round = 0; round < longestCategory; round++) {
+    for (const cat of faq.knowledge_base) {
+      const pair = cat.qa_pairs[round];
+      if (pair) ordered.push(pair.question);
+    }
+  }
+
+  return ordered.slice(0, count);
+}
