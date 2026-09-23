@@ -15,11 +15,11 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
     <div className={`flex items-end gap-2 ${isUser ? "justify-end" : "justify-start"}`}>
       {!isUser && <AssistantAvatar />}
 
-      <div className={`flex max-w-[80%] flex-col ${isUser ? "items-end" : "items-start"}`}>
+      <div className={`flex min-w-0 max-w-[80%] flex-col ${isUser ? "items-end" : "items-start"}`}>
         <span className="sr-only">{isUser ? "You said:" : "Assistant said:"}</span>
 
         <div
-          className={`whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-[15px] leading-relaxed ${
+          className={`min-w-0 max-w-full whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-[15px] leading-relaxed ${
             isUser
               ? "rounded-br-md bg-indigo-600 text-white"
               : "rounded-bl-md bg-slate-100 text-slate-900"
