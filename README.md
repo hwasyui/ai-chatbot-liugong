@@ -1,17 +1,37 @@
 # Acme Assistant (RAG)
 
-A practice project: the same FAQ chatbot, rebuilt with retrieval-augmented generation using Supabase pgvector, manual query rewriting and embeddings (no LangChain).
+Technical Test Assignment: IT Specialist Position. It is a chatbot that answers questions from a company FAQ using Retrieval-Augmented Generation: the FAQ is embedded into vectors with Supabase pgvector, retrieved per question, and answered through Groq. It only answers from what it retrieves, and says so when it does not know something.
 
-**Live demo:** _add your Vercel link here_
+**Live demo:** https://ai-chatbot-liugong-rag.vercel.app/
+
+## Notes
+
+I understand that context injection, putting all the FAQ data into the prompt, is actually a much simpler and better choice in this case since the FAQ file (`company_faq.json`) only has less than 20 entries.
+
+However, since this is a technical test, I believe it's better to show the RAG approach too, as a demonstration of scalability once the FAQ data grows. The `main` and `rag` branches here are the RAG version of the technical test AI chatbot.
+
+To check the context injection version, visit the [`context-injection`](https://github.com/hwasyui/ai-chatbot-liugong/tree/context-injection) branch, or try the [live version](https://ai-chatbot-liugong-context.vercel.app/).
+
+## Tech stack
+
+- Next.js 16 (App Router) and React, both frontend and backend in one project
+- TypeScript, Tailwind CSS
+- Groq for chat replies and query rewriting
+- Google Gemini for embeddings
+- Supabase (Postgres + pgvector) for vector search and chat history
 
 ## How it works
 
-1. `scripts/ingest.mjs` embeds each FAQ question/answer pair with Gemini and stores it in `liugong_rag_faq_chunks` (pgvector).
-2. On each message, `lib/rewrite.ts` turns a follow-up question into a standalone one using the chat history, via Groq.
-3. `lib/embeddings.ts` embeds that standalone question with Gemini, and `lib/retrieval.ts` finds the closest FAQ chunks in Supabase.
+**Setting up the knowledge base** (once, or whenever the FAQ changes): `scripts/ingest.mjs` embeds each FAQ question/answer pair with Gemini and stores it in `liugong_rag_faq_chunks` (pgvector).
+
+**Answering a question** (every message):
+
+1. `lib/rewrite.ts` turns a follow-up question into a standalone one using the chat history, via Groq.
+2. `lib/embeddings.ts` embeds that standalone question with Gemini.
+3. `lib/retrieval.ts` finds the closest FAQ chunks in Supabase.
 4. Only those matched chunks (not the whole FAQ) go into the system prompt sent to Groq for the final answer.
 
-Gemini is used for embeddings (Groq does not offer an embedding API). Groq is used for the chat and query rewriting steps, since its free tier allows far more requests per minute than Gemini's.
+Gemini handles embeddings and Groq handles chat and rewriting: Groq has no embedding API, and its free tier allows far more chat requests per minute than Gemini's.
 
 ## Setup
 
