@@ -9,14 +9,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const EMBEDDING_DIMENSIONS = 768;
 const TABLE = "liugong_rag_faq_chunks";
 
-// reads one env var, throws early if it's missing instead of failing weirdly later
+// reads one env var, throws early if its missing instead of failing weirdly later
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is not set (see README)`);
   return value;
 }
 
-// turns a category/question into a stable id, e.g. "Leave & Time Off" -> "leave-time-off"
+// turns a category/question into a stable id example: "Leave & Time Off" -> "leave-time-off"
 function slugify(text) {
   return text
     .toLowerCase()

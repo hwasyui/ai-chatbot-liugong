@@ -1,6 +1,6 @@
 # Acme Assistant (RAG)
 
-Technical Test Assignment: IT Specialist Position. It is a chatbot that answers questions from a company FAQ using Retrieval-Augmented Generation: the FAQ is embedded into vectors with Supabase pgvector, retrieved per question, and answered through Groq. It only answers from what it retrieves, constrained to not answer outside of the knowledge base.
+Technical Test Assignment: IT Specialist Position. A chatbot that answers questions from a company FAQ using Retrieval-Augmented Generation. The FAQ is stored as vectors in Supabase pgvector, and each question only pulls the few entries that actually match it. Chatbot will not answer questions outside of the knowledge base or guess something it doesn't know.
 
 **Live demo:** https://ai-chatbot-liugong-rag.vercel.app/
 
@@ -8,21 +8,20 @@ Technical Test Assignment: IT Specialist Position. It is a chatbot that answers 
 
 I understand that context injection, putting all the FAQ data into the prompt, is actually a simpler, more straightforward approach in this case since the FAQ file (`company_faq.json`) only has less than 20 entries.
 
-However, since this is a technical test, I believe it's better to show the RAG approach too, as a demonstration of scalability once the FAQ data grows. The [`main`](https://github.com/hwasyui/ai-chatbot-liugong/tree/main) and [`rag`](https://github.com/hwasyui/ai-chatbot-liugong/tree/rag) branches here are the RAG version of the technical test AI chatbot.
+However, since this is a technical test, I also built the RAG version to show the retrieval approach and how it scales once the FAQ data grows. That is what lives on the [`main`](https://github.com/hwasyui/ai-chatbot-liugong/tree/main) and [`rag`](https://github.com/hwasyui/ai-chatbot-liugong/tree/rag) branches.
 
 To check the context injection version, visit the [`context-injection`](https://github.com/hwasyui/ai-chatbot-liugong/tree/context-injection) branch, or try the [live version](https://ai-chatbot-liugong-context.vercel.app/).
 
 ## Tech stack
 
-- Next.js 16 (App Router) and React, both frontend and backend in one project
-- TypeScript, Tailwind CSS
+- Next.js 16 (React, TypeScript, Tailwind CSS) for frontend and backend
 - Groq for chat replies and query rewriting
 - Google Gemini for embeddings
 - Supabase (Postgres + pgvector) for vector search and chat history
 
 ## How it works
 
-**Setting up the knowledge base** (once, or whenever the FAQ changes): `scripts/ingest.mjs` embeds each FAQ question/answer pair with Gemini and stores it in `liugong_rag_faq_chunks` (pgvector).
+**Setting up the knowledge base** (once or whenever the FAQ changes): `scripts/ingest.mjs` embeds each FAQ question/answer pair with Gemini and stores it in `liugong_rag_faq_chunks` (pgvector).
 
 **Answering a question** (every message):
 
