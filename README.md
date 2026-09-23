@@ -1,8 +1,14 @@
 # Acme Assistant
 
-A take home assignment for a full stack developer technical test. It is a chatbot that answers questions from a company FAQ. It only answers from the FAQ data and says so when it does not know something.
+Technical Test Assignment: IT Specialist Position. It is a chatbot that answers questions from a company FAQ. It only answers from the FAQ data and says so when it does not know something.
 
-**Live demo:** link
+**Live demo:** https://ai-chatbot-liugong-context.vercel.app/
+
+## Notes
+
+This version uses context injection, pasting the whole FAQ into the prompt, which is actually the simpler and more accurate choice here since the FAQ file (`company_faq.json`) only has less than 20 entries.
+
+However, since this is a technical test, I also built a RAG version to show the retrieval approach and how it scales once the FAQ data grows. Check it out on the `main` and `rag` branches of this repo, or try the [live version](https://ai-chatbot-liugong-rag.vercel.app/).
 
 ## Tech stack
 
