@@ -43,3 +43,5 @@ next-env.d.ts
 
 # keep the env template in git
 !.env.example
+AGENTS.md
+CLAUDE.md

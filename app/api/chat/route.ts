@@ -7,7 +7,7 @@ import type { ChatResponse } from "@/lib/types";
 
 const HISTORY_LIMIT = 10;
 
-// handles a chat message: validates, asks gemini for a reply, saves, and sends it back
+// handles a chat message: validates, asks groq for a reply, saves, and sends it back
 export async function POST(request: Request) {
   let body: { sessionId?: unknown; message?: unknown };
   try {

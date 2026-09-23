@@ -21,7 +21,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
       }}
       className="flex items-end gap-2"
     >
-      <div className="relative flex-1">
+      <div className="relative min-w-0 flex-1">
         <textarea
           value={text}
           onChange={(event) => setText(event.target.value)}
@@ -38,7 +38,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
           className="block max-h-32 min-h-12 w-full resize-none rounded-2xl border border-slate-300 bg-white px-4 py-3 text-[15px] text-slate-900 [field-sizing:content] placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
         />
         {isNearLimit && (
-          <span className="absolute -top-5 right-2 text-xs text-slate-500">
+          <span className="pointer-events-none absolute bottom-2 right-3 rounded bg-white/90 px-1 text-xs text-slate-400">
             {text.length}/{MAX_MESSAGE_LENGTH}
           </span>
         )}
