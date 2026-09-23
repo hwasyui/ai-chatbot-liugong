@@ -11,9 +11,7 @@ import { createMessage } from "@/lib/message";
 import { createNewSessionId, getSessionId } from "@/lib/session";
 import type { ChatMessage } from "@/lib/types";
 
-type ChatProps = {
-  suggestedQuestions?: string[];
-};
+type ChatProps = { suggestedQuestions?: string[] };
 
 export default function Chat({ suggestedQuestions = [] }: ChatProps) {
   const sessionIdRef = useRef("");

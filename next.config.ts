@@ -11,12 +11,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: securityHeaders,
-      },
-    ];
+    return [{ source: "/:path*", headers: securityHeaders }];
   },
 };
 

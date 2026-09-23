@@ -3,10 +3,7 @@
 import { useState } from "react";
 import { MAX_MESSAGE_LENGTH } from "@/lib/validation";
 
-type ChatInputProps = {
-  onSend: (text: string) => void;
-  disabled: boolean;
-};
+type ChatInputProps = { onSend: (text: string) => void; disabled: boolean };
 
 export default function ChatInput({ onSend, disabled }: ChatInputProps) {
   const [text, setText] = useState("");
@@ -14,11 +11,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
   const canSend = text.trim().length > 0 && !disabled;
   const isNearLimit = text.length > MAX_MESSAGE_LENGTH - 100;
 
-  function submit() {
-    if (!canSend) return;
-    onSend(text);
-    setText("");
-  }
+  function submit() {if (!canSend) return; onSend(text); setText("");}
 
   return (
     <form
@@ -57,16 +50,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
         aria-label="Send message"
         className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-white transition hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-300"
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5 w-5"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
           <line x1="22" y1="2" x2="11" y2="13" />
           <polygon points="22 2 15 22 11 13 2 9 22 2" />
         </svg>

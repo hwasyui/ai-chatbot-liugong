@@ -1,14 +1,6 @@
-type SuggestedQuestionsProps = {
-  questions: string[];
-  onPick: (question: string) => void;
-  disabled: boolean;
-};
+type SuggestedQuestionsProps = { questions: string[]; onPick: (question: string) => void; disabled: boolean };
 
-export default function SuggestedQuestions({
-  questions,
-  onPick,
-  disabled,
-}: SuggestedQuestionsProps) {
+export default function SuggestedQuestions({ questions, onPick, disabled }: SuggestedQuestionsProps) {
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {questions.map((question) => (

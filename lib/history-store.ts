@@ -28,23 +28,12 @@ export async function getMessages(sessionId: string): Promise<ChatMessage[]> {
 
   if (error) throw new Error(`failed to load chat history: ${error.message}`);
 
-  return ((data ?? []) as MessageRow[]).map((row) => ({
-    id: row.id,
-    role: row.role,
-    content: row.content,
-    createdAt: row.created_at,
-  }));
+  return ((data ?? []) as MessageRow[]).map((row) => ({ id: row.id, role: row.role, content: row.content, createdAt: row.created_at }));
 }
 
 // appends new messages to a session's saved history
 export async function saveMessages(sessionId: string, newMessages: ChatMessage[]): Promise<void> {
-  const rows: MessageRow[] = newMessages.map((message) => ({
-    id: message.id,
-    session_id: sessionId,
-    role: message.role,
-    content: message.content,
-    created_at: message.createdAt,
-  }));
+  const rows: MessageRow[] = newMessages.map((message) => ({ id: message.id, session_id: sessionId, role: message.role, content: message.content, created_at: message.createdAt }));
 
   const { error } = await getClient().from(TABLE).insert(rows);
   if (error) throw new Error(`failed to save chat history: ${error.message}`);

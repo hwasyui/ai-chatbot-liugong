@@ -13,10 +13,7 @@ export async function generateReply(history: ChatMessage[], userMessage: string)
   const ai = new GoogleGenAI({ apiKey });
 
   const contents = [
-    ...history.map((msg) => ({
-      role: msg.role === "assistant" ? "model" : "user",
-      parts: [{ text: msg.content }],
-    })),
+    ...history.map((msg) => ({ role: msg.role === "assistant" ? "model" : "user", parts: [{ text: msg.content }] })),
     { role: "user", parts: [{ text: userMessage }] },
   ];
 
